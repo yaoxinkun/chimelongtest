@@ -41,7 +41,6 @@ def config = {
 	    extName 'cmssmartedit'
 	    extName 'cmsbackoffice'
         extName 'cmsmulticountrycockpit'
-        extName 'multicountrysampledataaddon'
 
 	    extName 'previewpersonalizationweb'
 	    extName 'personalizationcmsweb'
@@ -67,8 +66,6 @@ def config = {
 	    extName 'assistedserviceatddtests'
 	    extName 'promotionengineatddtests'
 	    extName 'textfieldconfiguratortemplateatddtests'
-
-        extName 'pcmbackofficesamplesaddon'
 
        
         extName 'apparelstore'

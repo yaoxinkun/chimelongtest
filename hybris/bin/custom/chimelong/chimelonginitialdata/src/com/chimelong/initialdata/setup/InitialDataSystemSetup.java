@@ -13,19 +13,24 @@ package com.chimelong.initialdata.setup;
 import de.hybris.platform.commerceservices.dataimport.impl.CoreDataImportService;
 import de.hybris.platform.commerceservices.dataimport.impl.SampleDataImportService;
 import de.hybris.platform.commerceservices.setup.AbstractSystemSetup;
+import de.hybris.platform.commerceservices.setup.data.ImportData;
+import de.hybris.platform.commerceservices.setup.events.CoreDataImportedEvent;
+import de.hybris.platform.commerceservices.setup.events.SampleDataImportedEvent;
 import de.hybris.platform.core.initialization.SystemSetup;
 import de.hybris.platform.core.initialization.SystemSetup.Process;
 import de.hybris.platform.core.initialization.SystemSetup.Type;
 import de.hybris.platform.core.initialization.SystemSetupContext;
 import de.hybris.platform.core.initialization.SystemSetupParameter;
 import de.hybris.platform.core.initialization.SystemSetupParameterMethod;
-import com.chimelong.initialdata.constants.ChimelongInitialDataConstants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
+
+import com.chimelong.initialdata.constants.ChimelongInitialDataConstants;
 
 
 /**
@@ -36,6 +41,8 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 {
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(InitialDataSystemSetup.class);
+
+	public static final String CHIMELONG = "chimelong";
 
 	private static final String IMPORT_CORE_DATA = "importCoreData";
 	private static final String IMPORT_SAMPLE_DATA = "importSampleData";
@@ -64,7 +71,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	/**
 	 * Implement this method to create initial objects. This method will be called by system creator during
 	 * initialization and system update. Be sure that this method can be called repeatedly.
-	 * 
+	 *
 	 * @param context
 	 *           the context provides the selected parameters and values
 	 */
@@ -101,9 +108,19 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	@SystemSetup(type = Type.PROJECT, process = Process.ALL)
 	public void createProjectData(final SystemSetupContext context)
 	{
-		/*
-		 * Add import data for each site you have configured
-		 */
+		final List<ImportData> importData = new ArrayList<ImportData>();
+
+		final ImportData chimeImportData = new ImportData();
+		chimeImportData.setProductCatalogName(CHIMELONG);
+		chimeImportData.setContentCatalogNames(Arrays.asList(CHIMELONG));
+		chimeImportData.setStoreNames(Arrays.asList(CHIMELONG));
+		importData.add(chimeImportData);
+
+		getCoreDataImportService().execute(this, context, importData);
+		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
+
+		getSampleDataImportService().execute(this, context, importData);
+		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 	}
 
 	public CoreDataImportService getCoreDataImportService()

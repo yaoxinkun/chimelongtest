@@ -33,7 +33,6 @@
     <extension name='cmssmartedit' />
     <extension name='cmsbackoffice' />
     <extension name='cmsmulticountrycockpit' />
-    <extension name='multicountrysampledataaddon' />
     <extension name='previewpersonalizationweb' />
     <extension name='personalizationcmsweb' />
     <extension name='personalizationsmartedit' />
@@ -56,7 +55,7 @@
     <extension name='assistedserviceatddtests' />
     <extension name='promotionengineatddtests' />
     <extension name='textfieldconfiguratortemplateatddtests' />
-    <extension name='pcmbackofficesamplesaddon' />
+
     <extension name='chimelongcockpits' />
     <extension name='chimelonginitialdata' />
     <extension name='chimelongfulfilmentprocess' />
