@@ -66,8 +66,9 @@ def config = {
 	    extName 'assistedserviceatddtests'
 	    extName 'promotionengineatddtests'
 	    extName 'textfieldconfiguratortemplateatddtests'
+        extName 'subscriptionbundlefacades'
+        extName 'subscriptionbundleservices'
 
-       
         extName 'apparelstore'
         extName 'chimelongcockpits'
 	    extName 'chimelonginitialdata'
