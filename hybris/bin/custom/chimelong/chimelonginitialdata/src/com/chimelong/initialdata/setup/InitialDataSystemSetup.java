@@ -123,6 +123,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 	}
 
+
 	public CoreDataImportService getCoreDataImportService()
 	{
 		return coreDataImportService;

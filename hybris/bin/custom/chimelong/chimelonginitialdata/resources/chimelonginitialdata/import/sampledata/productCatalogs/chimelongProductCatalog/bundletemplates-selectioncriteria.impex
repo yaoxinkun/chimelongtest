@@ -8,30 +8,15 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-# ImpEx for Importing Categories
-
-# Macros / Replacement Parameter definitions
+#
+# Import the bundletemplates configuration for the ChimeLong Store
+#
 $productCatalog=chimelongProductCatalog
-$productCatalogName=Chimelong Product Catalog
-
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$supercategories=source(code, $catalogVersion)[unique=true]
-$categories=target(code, $catalogVersion)[unique=true]
 
-# Insert Categories
-INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
-;sc;;
-;sc100004;;
-;sc100000;;
-;h;;
-;h100003;;
-;h100002;;
-;h100015;;
+INSERT_UPDATE PickExactlyNBundleSelectionCriteria;id[unique=true];n;$catalogVersion
 
-# Insert Category Structure
-INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
-;sc100004;sc
-;sc100000;sc
-;h100003;h
-;h100002;h
-;h100015;h
+INSERT_UPDATE PickNToMBundleSelectionCriteria;id[unique=true];n;m;$catalogVersion
+
+
+UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];bundleSelectionCriteria(id, $catalogVersion);$catalogVersion

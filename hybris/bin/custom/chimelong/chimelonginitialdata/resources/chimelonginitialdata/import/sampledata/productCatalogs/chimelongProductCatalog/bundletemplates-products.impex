@@ -1,0 +1,35 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the bundletemplates configuration for the ChimeLong Store
+#
+$productCatalog=chimelongProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];products(code, $catalogVersion);$catalogVersion
+;BU000001;;ph1000021,psc1000001;
+;BU000002;;ph1000021,psc1000001;
+;BU000003;;ph1000022,psc1000041;
+;BU000004;;ph1000022,psc1000041;
+;BU000005;;ph1000023,psc1000001;
+;BU000006;;ph1000023,psc1000001;
+;BU000007;;ph1000031,psc1000001;
+;BU000008;;ph1000031,psc1000001;
+;BU000009;;ph1000032,psc1000041;
+;BU000010;;ph1000032,psc1000041;
+;BU000011;;ph1000033,psc1000001;
+;BU000012;;ph1000033,psc1000001;
+;BU000013;;ph1000151,psc1000041;
+;BU000014;;ph1000151,psc1000041;
+;BU000015;;ph1000152,psc1000041;
+;BU000016;;ph1000152,psc1000041;
+;BU000017;;ph1000153,psc1000041;
+;BU000018;;ph1000153,psc1000041;

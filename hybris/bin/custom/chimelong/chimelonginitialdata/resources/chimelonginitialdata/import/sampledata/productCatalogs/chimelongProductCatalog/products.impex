@@ -21,3 +21,29 @@ $approved=approvalstatus(code)[default='check']
 
 # Insert Products
 INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
+
+# Insert HotelProducts
+INSERT_UPDATE HotelProduct;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
+;ph1000031;h100003;;;;;;;
+;ph1000032;h100003;;;;;;;
+;ph1000033;h100003;;;;;;;
+;ph1000021;h100002;;;;;;;
+;ph1000022;h100002;;;;;;;
+;ph1000023;h100002;;;;;;;
+;ph1000151;h100015;;;;;;;
+;ph1000152;h100015;;;;;;;
+;ph1000153;h100015;;;;;;;
+
+
+# Insert TicketProducts
+INSERT_UPDATE TicketProduct;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
+;psc1000041;sc100004;;;;;;;
+;psc1000042;sc100004;;;;;;;
+;psc1000043;sc100004;;;;;;;
+;psc1000045;sc100004;;;;;;;
+;psc1000046;sc100004;;;;;;;
+;psc1000001;sc100000;;;;;;;
+;psc1000002;sc100000;;;;;;;
+;psc1000003;sc100000;;;;;;;
+;psc1000004;sc100000;;;;;;;
+;psc1000005;sc100000;;;;;;;

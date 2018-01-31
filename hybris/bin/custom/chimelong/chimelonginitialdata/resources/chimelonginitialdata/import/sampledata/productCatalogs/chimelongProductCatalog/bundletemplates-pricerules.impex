@@ -1,0 +1,38 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the bundletemplates configuration for the ChimeLong Store
+#
+#% impex.setLocale( Locale.GERMAN ); 	
+
+$productCatalog=chimelongProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$ruleType=ruleType(code)[default='ANY']
+
+INSERT_UPDATE ChangeProductPriceBundleRule;id[unique=true];$catalogVersion;bundleTemplate(id,version[default=1.0],$catalogVersion);conditionalProducts(code,$catalogVersion);targetProducts(code,$catalogVersion);$ruleType;price;currency(isocode)[default=RMB, unique=true]
+;PRICE_BU000001;;BU000001;ph1000021,psc1000001;psc1000001;;300;
+;PRICE_BU000002;;BU000002;ph1000021,psc1000001;psc1000001;;370;
+;PRICE_BU000003;;BU000003;ph1000022,psc1000041;psc1000041;;300;
+;PRICE_BU000004;;BU000004;ph1000022,psc1000041;psc1000041;;370;
+;PRICE_BU000005;;BU000005;ph1000023,psc1000001;psc1000001;;300;
+;PRICE_BU000006;;BU000006;ph1000023,psc1000001;psc1000001;;370;
+;PRICE_BU000007;;BU000007;ph1000031,psc1000001;psc1000001;;380;
+;PRICE_BU000008;;BU000008;ph1000031,psc1000001;psc1000001;;500;
+;PRICE_BU000009;;BU000009;ph1000032,psc1000041;psc1000041;;380;
+;PRICE_BU000010;;BU000010;ph1000032,psc1000041;psc1000041;;500;
+;PRICE_BU000011;;BU000011;ph1000033,psc1000001;psc1000001;;380;
+;PRICE_BU000012;;BU000012;ph1000033,psc1000001;psc1000001;;500;
+;PRICE_BU000013;;BU000013;ph1000151,psc1000041;psc1000041;;390;
+;PRICE_BU000014;;BU000014;ph1000151,psc1000041;psc1000041;;520;
+;PRICE_BU000015;;BU000015;ph1000152,psc1000041;psc1000041;;390;
+;PRICE_BU000016;;BU000016;ph1000152,psc1000041;psc1000041;;520;
+;PRICE_BU000017;;BU000017;ph1000153,psc1000041;psc1000041;;390;
+;PRICE_BU000018;;BU000018;ph1000153,psc1000041;psc1000041;;520;

@@ -1,0 +1,67 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the bundletemplates configuration for the ChimeLong Store
+#
+$productCatalog=chimelongProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE BundleTemplateStatus;id[unique=true];status(code)[default=approved];$catalogVersion
+;Status_BU000001;
+;Status_BU000002;
+;Status_BU000003;
+;Status_BU000004;
+;Status_BU000005;
+;Status_BU000006;
+;Status_BU000007;
+;Status_BU000008;
+;Status_BU000009;
+;Status_BU000010;
+;Status_BU000011;
+;Status_BU000012;
+;Status_BU000013;
+;Status_BU000014;
+;Status_BU000015;
+;Status_BU000016;
+;Status_BU000017;
+;Status_BU000018;
+
+
+
+# Insert BundleTemplates
+INSERT_UPDATE BundleTemplate;id[unique=true];parentTemplate(id, version[default=1.0], $catalogVersion);version[default=1.0][unique=true];status(id, $catalogVersion);$catalogVersion;
+;BU000001;;;Status_BU000001;
+;BU000002;;;Status_BU000002;
+;BU000003;;;Status_BU000003;
+;BU000004;;;Status_BU000004;
+;BU000005;;;Status_BU000005;
+;BU000006;;;Status_BU000006;
+;BU000007;;;Status_BU000007;
+;BU000008;;;Status_BU000008;
+;BU000009;;;Status_BU000009;
+;BU000010;;;Status_BU000010;
+;BU000011;;;Status_BU000011;
+;BU000012;;;Status_BU000012;
+;BU000013;;;Status_BU000013;
+;BU000014;;;Status_BU000014;
+;BU000015;;;Status_BU000015;
+;BU000016;;;Status_BU000016;
+;BU000017;;;Status_BU000017;
+;BU000018;;;Status_BU000018;
+
+
+# Set the child templates again to make sure that the sequence of child templates is correct
+UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];childTemplates(id,version[default=1.0],$catalogVersion);$catalogVersion
+
+
+
+# Bundle dependencies
+UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];requiredBundleTemplates(id,version[default=1.0],$catalogVersion);$catalogVersion

@@ -187,7 +187,11 @@
 			     <defaultvalue>Boolean.FALSE</defaultvalue>
           </attribute>
         </attributes>
-      </itemtype>  
+      </itemtype>
+      
+        <itemtype code="CategoryMenuComponent" generate="true" extends="SimpleCMSComponent" autocreate="true"
+			jaloclass="com.chimelong.core.jalo.cms2.components.CategoryMenuComponent">
+		</itemtype>  
       
       </typegroup>
       
