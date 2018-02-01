@@ -34,22 +34,34 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+        
+        <enumtype generate="true" code="ChiemLongChannel" autocreate="true" dynamic="true">
+            <value code="SITE"/>
+            <value code="OTA"/>
+            <value code="OS"/>
+        </enumtype>
     </enumtypes>
     
-	 <relations>
-	    <relation localized="false" code="RatePlanHotelRelation">
-	      <deployment table="RatePlan2Hotel" typecode="30076"/>
-	      <sourceElement type="RatePlan" qualifier="ratePlan" cardinality="many">
+	<relations>
+	    <relation localized="false" code="RoomRatePlanHotelRelation">
+	      <sourceElement type="RoomRatePlan" qualifier="roomRatePlan" cardinality="one">
 	        <modifiers/>
 	      </sourceElement>
 	      <targetElement type="HotelProduct" qualifier="hotelProduct" cardinality="many">
 	        <modifiers/>
 	      </targetElement>
 	    </relation>
+	    
+	    <relation localized="false" code="TicketRatePlanHotelRelation">
+	      <sourceElement type="TicketRatePlan" qualifier="ticketRatePlan" cardinality="one">
+	        <modifiers/>
+	      </sourceElement>
+	      <targetElement type="TicketProduct" qualifier="ticketProduct" cardinality="many">
+	        <modifiers/>
+	      </targetElement>
+	    </relation>
 	  </relations>
    
-
-
     <itemtypes>
     
          
@@ -128,71 +140,94 @@
 
         <!-- Add your item definitions here -->
 
-      <typegroup name="ChimeLong">
-      
-        <itemtype code="HotelProduct" extends="Product" jaloclass="com.chimelong.core.jalo.hotel.HotelProduct">
-        <description>This type represents the seats of a transport vehicle.</description>
-        <attributes>
-        </attributes>
-      </itemtype>
-      
-      
-        <itemtype code="RatePlan" extends="Category" jaloclass="com.chimelong.core.jalo.hotel.RatePlan">
-        <description>This item represents a pricing plan for a particular hotel that could consist of many
+	<typegroup name="ChimeLong">
+
+		<itemtype code="HotelProduct" extends="Product"
+			jaloclass="com.chimelong.core.jalo.hotel.HotelProduct">
+			<description>This type represents the seats of a transport vehicle.</description>
+			<attributes>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="TicketRatePlan" extends="Category"
+			jaloclass="com.chimelong.core.jalo.hotel.TicketRatePlan">
+			<description>This item represents a pricing plan for a particular ticket that could consist of many
+          ticket rates
+        </description>
+			<attributes>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="RoomRatePlan" extends="Category"
+			jaloclass="com.chimelong.core.jalo.hotel.RatePlan">
+			<description>This item represents a pricing plan for a particular hotel that could consist of many
           room rates
         </description>
-        <attributes>
-          <attribute type="java.lang.Long" qualifier="timeUnit">
-            <persistence type="property"/>
-          </attribute>
-          <attribute type="java.lang.Integer" qualifier="minStay">
-            <persistence type="property"/>
-          </attribute>
-          <attribute type="java.lang.Integer" qualifier="maxStay">
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>  
-      
-    
-      <itemtype code="RoomRateProduct" extends="Product"
-              jaloclass="com.chimelong.core.jalo.hotel.RoomRateProduct">
-        <description>This type represents a room rate that is used in a rate plan.</description>
-        <attributes>
-          <attribute type="DateRangeList" qualifier="dateRanges">
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>  
-      
-       <itemtype code="DateRange" jaloclass="com.chimelong.core.jalo.hotel.DataRange">
-        <description>This item represents a date range from a start to an end date</description>
-        <deployment table="DateRange" typecode="30071"/>
-        <attributes>
-          <attribute type="java.util.Date" qualifier="startingDate">
-            <persistence type="property"/>
-          </attribute>
-          <attribute type="java.util.Date" qualifier="endingDate">
-            <persistence type="property"/>
-          </attribute>
-        </attributes>
-      </itemtype>
-      
-      <itemtype code="TicketProduct" extends="Product" jaloclass="com.chimelong.core.jalo.ticket.TicketProduct">
-        <description>This type represents the seats of a transport vehicle.</description>
-        <attributes>
-          <attribute qualifier="isPackage" type="boolean">
-            <persistence type="property"/>
-            	<modifiers optional="false" />
-			     <defaultvalue>Boolean.FALSE</defaultvalue>
-          </attribute>
-        </attributes>
-      </itemtype>  
-      
-      </typegroup>
-      
-      
-      
+			<attributes>
+				<attribute type="java.lang.Long" qualifier="timeUnit">
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.Integer" qualifier="minStay">
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.lang.Integer" qualifier="maxStay">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="TicketRateProduct" extends="Product"
+			jaloclass="com.chimelong.core.jalo.hotel.TicketRateProduct">
+			<description>This type represents a ticket rate that is used in a rate plan.</description>
+			<attributes>
+				<attribute type="DateRangeList" qualifier="dateRanges">
+					<persistence type="property" />
+				</attribute>
+				<attribute type="ChiemLongChannel" qualifier="channel">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="RoomRateProduct" extends="Product"
+			jaloclass="com.chimelong.core.jalo.hotel.RoomRateProduct">
+			<description>This type represents a room rate that is used in a rate plan.</description>
+			<attributes>
+				<attribute type="DateRangeList" qualifier="dateRanges">
+					<persistence type="property" />
+				</attribute>
+				<attribute type="ChiemLongChannel" qualifier="channel">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="DateRange" jaloclass="com.chimelong.core.jalo.hotel.DataRange">
+			<description>This item represents a date range from a start to an end date</description>
+			<deployment table="DateRange" typecode="30071" />
+			<attributes>
+				<attribute type="java.util.Date" qualifier="startingDate">
+					<persistence type="property" />
+				</attribute>
+				<attribute type="java.util.Date" qualifier="endingDate">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="TicketProduct" extends="Product"
+			jaloclass="com.chimelong.core.jalo.ticket.TicketProduct">
+			<description>This type represents the seats of a transport vehicle.</description>
+			<attributes>
+				<attribute qualifier="isPackage" type="boolean">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>Boolean.FALSE</defaultvalue>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+	</typegroup>
  
     </itemtypes>
 </items>
