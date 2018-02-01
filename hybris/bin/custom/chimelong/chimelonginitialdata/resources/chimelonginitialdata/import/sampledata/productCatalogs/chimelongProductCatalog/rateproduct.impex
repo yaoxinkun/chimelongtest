@@ -3,10 +3,10 @@
 $productCatalog=chimelongProductCatalog
 $productCatalogName=Chimelong Product Catalog
  
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]$approved = approvalstatus(code)[default = 'approved']
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$approved = approvalstatus(code)[default = 'approved']
 $categories = supercategories(code, $catalogVersion)
- 
-$approved=approvalstatus(code)[default='check']
+
  
 #################
 ### DateRange ###
@@ -14,11 +14,11 @@ $approved=approvalstatus(code)[default='check']
  
 INSERT_UPDATE DateRange ; startingDate[dateformat = 'yyyy-MM-dd'][unique=true] ; endingDate[dateformat = 'yyyy-MM-dd'][unique=true] ; &dateRangeRef 
 #2018                   
-                        ; 2018-01-01                                           ; 2018-09-30                                         ; dateRange1    
+                        ; 2018-01-01                                           ; 2018-09-30                                         ; dateRange    
                         ; 2018-10-01                                           ; 2018-10-07                                         ; dateRange2    
                         ; 2018-10-08                                           ; 2018-12-31                                         ; dateRange3    
                         
-INSERT_UPDATE TicketRateProduct ; code[unique=true]        ; dateRanges(&dateRangeRef) ; chiemLongChannel(code) ; $categories     ; $catalogVersion ; $approved 
+INSERT_UPDATE TicketRateProduct ; code[unique=true]        ; dateRanges(&dateRangeRef) ; channel(code) ; $categories     ; $catalogVersion ; $approved 
                                 ; psc1000041_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000041_plan ;                 ;           
                                 ; psc1000041_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000041_plan ;                 ;           
                                 ; psc1000041_plan_product3 ; dateRange2                ; SITE                   ; psc1000041_plan ;                 ;           
@@ -69,7 +69,7 @@ INSERT_UPDATE TicketRateProduct ; code[unique=true]        ; dateRanges(&dateRan
                                 ; psc1000005_plan_product3 ; dateRange2                ; SITE                   ; psc1000005_plan ;                 ;           
                                 ; psc1000005_plan_product4 ; dateRange2                ; OTA                    ; psc1000005_plan ;                 ;           
                                 
-INSERT_UPDATE RoomRateProduct ; code[unique=true]       ; dateRanges(&dateRangeRef) ; chiemLongChannel(code) ; $categories    ; $catalogVersion ; $approved 
+INSERT_UPDATE RoomRateProduct ; code[unique=true]       ; dateRanges(&dateRangeRef) ; channel(code) ; $categories    ; $catalogVersion ; $approved 
                               ; ph1000031_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000031_plan ;                 ;           
                               ; ph1000031_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000031_plan ;                 ;           
                               ; ph1000031_plan_product3 ; dateRange2                ; SITE                   ; ph1000031_plan ;                 ;           
