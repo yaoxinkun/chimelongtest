@@ -21,3 +21,28 @@ $lang=zh
 
 # Update allProducts with localisations
 UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang]
+
+# Update allHotelProducts with localisations
+UPDATE HotelProduct;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang]
+;ph1000031;;帅帅房;;
+;ph1000032;;萌萌房;;
+;ph1000033;;酷酷房;;
+;ph1000021;;高级房;;
+;ph1000022;;套房;;
+;ph1000023;;野趣房;;
+;ph1000151;;标准双人房;;
+;ph1000152;;家庭房;;
+;ph1000153;;商务房;;
+
+# Update allTicketProducts with localisations
+UPDATE TicketProduct;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang]
+;psc1000041;;平日成人全票;;
+;psc1000042;;平日儿童票;;
+;psc1000043;;平日长者全票;;
+;psc1000045;;长隆野生动物世界+长隆国际马戏大剧院平日普通座全票 ;;
+;psc1000046;;夜宿长隆大熊猫中心 特定日双人套票;;
+;psc1000001;;成人全票;;
+;psc1000002;;儿童票;;
+;psc1000003;;大学生全票;;
+;psc1000004;;情侣票;;
+;psc1000005;;长隆欢乐世界+长隆国际马戏大剧院票平日普通座全票;;

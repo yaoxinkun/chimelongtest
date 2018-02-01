@@ -14,7 +14,6 @@
     <extension name='solrfacetsearchbackoffice' />
     <extension name='solrserver' />
     <extension name='ycommercewebservices' />
-    <extension name='ycommercewebservicestest' />
     <extension name='acceleratorwebservicesaddon' />
     <extension name='orderselfserviceaddon' />
     <extension name='customersupportbackoffice' />
@@ -55,15 +54,15 @@
     <extension name='assistedserviceatddtests' />
     <extension name='promotionengineatddtests' />
     <extension name='textfieldconfiguratortemplateatddtests' />
+    <extension name='configurablebundleaddon' />
     <extension name='subscriptionbundlefacades' />
     <extension name='subscriptionbundleservices' />
-    
+       
     <extension name='chimelongcockpits' />
     <extension name='chimelonginitialdata' />
     <extension name='chimelongfulfilmentprocess' />
     <extension name='chimelongcore' />
     <extension name='chimelongstorefront' />
 
-    <extension name='apparelstore'/>
   </extensions>
 </hybrisconfig>

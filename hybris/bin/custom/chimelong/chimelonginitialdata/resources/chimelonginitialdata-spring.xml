@@ -29,4 +29,11 @@
 		<property name="sampleDataImportService" ref="sampleDataImportService"/>
 	</bean>
 
+   <alias name="chimelongSampleDataImportService" alias="sampleDataImportService"/>
+	<bean id="chimelongSampleDataImportService" class="com.chimelong.initialdata.service.impl.ChimelongSampleDataImportService"
+		parent="defaultSampleDataImportService">
+		<property name="typeService" ref="typeService" />
+		<property name="modelService" ref="modelService" />
+	</bean>
+
 </beans>

@@ -1,0 +1,43 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the bundletemplates configuration for the ChimeLong Store
+#
+$productCatalog=chimelongProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$lang=zh
+
+# Insert BundleTemplates
+# - 1st level bundle templates: ;<package id>;<package name> Package
+# - 2st level bundle templates: ;<package id>_<component id>;<package name> - <component name> Component
+# - <package id> = <package name> without blanks
+# - <component id> = <component name> without blanks
+
+UPDATE BundleTemplate;id[unique=true];name[lang=$lang];version[default=1.0];$catalogVersion
+;BU000001;2天1晚双人单园游（马戏除外）
+;BU000002;2天1晚双人单园游+自助晚餐（马戏除外）
+;BU000003;2天1晚双人单园游（马戏除外）
+;BU000004;2天1晚双人单园游+自助晚餐（马戏除外）
+;BU000005;2天1晚双人单园游（马戏除外）
+;BU000006;2天1晚双人单园游+自助晚餐（马戏除外）
+;BU000007;2天1晚双人单园游（马戏除外）
+;BU000008;2天1晚家庭单园游（马戏除外）
+;BU000009;2天1晚双人单园游（马戏除外）
+;BU000010;2天1晚家庭单园游（马戏除外）
+;BU000011;2天1晚双人单园游（马戏除外）
+;BU000012;2天1晚家庭单园游（马戏除外）
+;BU000013;2天1晚双人游(2天无限次入园动物园门票2张)
+;BU000014;2天1晚家庭游(2天无限次入园动物园门票3张)
+;BU000015;2天1晚双人游(2天无限次入园动物园门票2张)
+;BU000016;2天1晚家庭游(2天无限次入园动物园门票3张)
+;BU000017;2天1晚双人游(2天无限次入园动物园门票2张)
+;BU000018;2天1晚家庭游(2天无限次入园动物园门票3张)
+

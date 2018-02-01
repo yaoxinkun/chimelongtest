@@ -1,233 +1,240 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
- [y] hybris Platform
+<!-- [y] hybris Platform Copyright (c) 2017 SAP SE or an SAP affiliate company. 
+	All rights reserved. This software is the confidential and proprietary information 
+	of SAP ("Confidential Information"). You shall not disclose such Confidential 
+	Information and shall use it only in accordance with the terms of the license 
+	agreement you entered into with SAP. -->
 
- Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="items.xsd">
 
- This software is the confidential and proprietary information of SAP
- ("Confidential Information"). You shall not disclose such Confidential
- Information and shall use it only in accordance with the terms of the
- license agreement you entered into with SAP.
--->
+	<collectiontypes>
+		<collectiontype code="GenderList" elementtype="Gender"
+			autocreate="true" generate="true" type="list" />
+		<collectiontype elementtype="DateRange" code="DateRangeList"
+			type="list" />
+		<collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum"
+			autocreate="true" generate="true" type="set" />
+	</collectiontypes>
 
-<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+	<enumtypes>
+		<enumtype generate="true" code="SwatchColorEnum" autocreate="true"
+			dynamic="true">
+			<value code="BLACK" />
+			<value code="BLUE" />
+			<value code="BROWN" />
+			<value code="GREEN" />
+			<value code="GREY" />
+			<value code="ORANGE" />
+			<value code="PINK" />
+			<value code="PURPLE" />
+			<value code="RED" />
+			<value code="SILVER" />
+			<value code="WHITE" />
+			<value code="YELLOW" />
+		</enumtype>
 
-    <collectiontypes>
-        <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true" type="list"/>
-       <collectiontype elementtype="DateRange" code="DateRangeList" type="list"/>
-        <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
-                        type="set"/>
-    </collectiontypes>
-    
-    <enumtypes>
-       <enumtype generate="true" code="SwatchColorEnum" autocreate="true" dynamic="true">
-            <value code="BLACK"/>
-            <value code="BLUE"/>
-            <value code="BROWN"/>
-            <value code="GREEN"/>
-            <value code="GREY"/>
-            <value code="ORANGE"/>
-            <value code="PINK"/>
-            <value code="PURPLE"/>
-            <value code="RED"/>
-            <value code="SILVER"/>
-            <value code="WHITE"/>
-            <value code="YELLOW"/>
-        </enumtype>
-        
-        <enumtype generate="true" code="ChiemLongChannel" autocreate="true" dynamic="true">
-            <value code="SITE"/>
-            <value code="OTA"/>
-            <value code="OS"/>
-        </enumtype>
-    </enumtypes>
-    
+		<enumtype generate="true" code="ChiemLongChannel" autocreate="true"
+			dynamic="true">
+			<value code="SITE" />
+			<value code="OTA" />
+			<value code="OS" />
+		</enumtype>
+	</enumtypes>
+
 	<relations>
-	    <relation localized="false" code="RoomRatePlanHotelRelation">
-	      <sourceElement type="RoomRatePlan" qualifier="roomRatePlan" cardinality="one">
-	        <modifiers/>
-	      </sourceElement>
-	      <targetElement type="HotelProduct" qualifier="hotelProduct" cardinality="many">
-	        <modifiers/>
-	      </targetElement>
-	    </relation>
-	    
-	    <relation localized="false" code="TicketRatePlanHotelRelation">
-	      <sourceElement type="TicketRatePlan" qualifier="ticketRatePlan" cardinality="one">
-	        <modifiers/>
-	      </sourceElement>
-	      <targetElement type="TicketProduct" qualifier="ticketProduct" cardinality="many">
-	        <modifiers/>
-	      </targetElement>
-	    </relation>
-	  </relations>
-   
-    <itemtypes>
-    
-         
-        <!-- TypeGroups are for structure of this file only -->
-        <typegroup name="Apparel">
-            <itemtype code="ApparelProduct" extends="Product"
-                      autocreate="true" generate="true"
-                      jaloclass="com.chimelong.core.jalo.ApparelProduct">
-                <description>Base apparel product extension that contains additional attributes.</description>
-                <attributes>
-                    <attribute qualifier="genders" type="GenderList">
-                        <description>List of genders that the ApparelProduct is designed for</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
+		<relation localized="false" code="RoomRatePlanHotelRelation">
+			<sourceElement type="RoomRatePlan" qualifier="roomRatePlan"
+				cardinality="one">
+				<modifiers />
+			</sourceElement>
+			<targetElement type="HotelProduct" qualifier="hotelProduct"
+				cardinality="many">
+				<modifiers />
+			</targetElement>
+		</relation>
 
-            <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
-                      autocreate="true" generate="true"
-                      jaloclass="com.chimelong.core.jalo.ApparelStyleVariantProduct">
-                <description>Apparel style variant type that contains additional attribute describing variant style.
+		<relation localized="false" code="TicketRatePlanHotelRelation">
+			<sourceElement type="TicketRatePlan" qualifier="ticketRatePlan"
+				cardinality="one">
+				<modifiers />
+			</sourceElement>
+			<targetElement type="TicketProduct" qualifier="ticketProduct"
+				cardinality="many">
+				<modifiers />
+			</targetElement>
+		</relation>
+	</relations>
+
+	<itemtypes>
+
+
+		<!-- TypeGroups are for structure of this file only -->
+		<typegroup name="Apparel">
+			<itemtype code="ApparelProduct" extends="Product"
+				autocreate="true" generate="true" jaloclass="com.chimelong.core.jalo.ApparelProduct">
+				<description>Base apparel product extension that contains additional attributes.</description>
+				<attributes>
+					<attribute qualifier="genders" type="GenderList">
+						<description>List of genders that the ApparelProduct is designed for</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ApparelStyleVariantProduct">
+				<description>Apparel style variant type that contains additional attribute describing variant style.
                 </description>
-                <attributes>
-                    <attribute qualifier="style" type="localized:java.lang.String"
-                               metatype="VariantAttributeDescriptor">
-                        <description>Color/Pattern of the product.</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
+				<attributes>
+					<attribute qualifier="style" type="localized:java.lang.String"
+						metatype="VariantAttributeDescriptor">
+						<description>Color/Pattern of the product.</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
 
-                    <attribute qualifier="swatchColors" type="SwatchColorSet">
-                        <description>A normalized color mapping to a standardized front-end navigable name.
+					<attribute qualifier="swatchColors" type="SwatchColorSet">
+						<description>A normalized color mapping to a standardized front-end navigable name.
                         </description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
 
-            </itemtype>
+			</itemtype>
 
-            <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
-                      autocreate="true" generate="true"
-                      jaloclass="com.chimelong.core.jalo.ApparelSizeVariantProduct">
-                <description>Apparel size variant type that contains additional attribute describing variant size.
+			<itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ApparelSizeVariantProduct">
+				<description>Apparel size variant type that contains additional attribute describing variant size.
                 </description>
-                <attributes>
-                    <attribute qualifier="size" type="localized:java.lang.String"
-                               metatype="VariantAttributeDescriptor">
-                        <description>Size of the product.</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
+				<attributes>
+					<attribute qualifier="size" type="localized:java.lang.String"
+						metatype="VariantAttributeDescriptor">
+						<description>Size of the product.</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
 
-        <typegroup name="Electronics">
-            <itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
-                      autocreate="true" generate="true"
-                      jaloclass="com.chimelong.core.jalo.ElectronicsColorVariantProduct">
-                <description>Electronics color variant type that contains additional attribute describing variant color.
+		<typegroup name="Electronics">
+			<itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
+				autocreate="true" generate="true"
+				jaloclass="com.chimelong.core.jalo.ElectronicsColorVariantProduct">
+				<description>Electronics color variant type that contains additional attribute describing variant color.
                 </description>
-                <attributes>
-                    <attribute qualifier="color" type="localized:java.lang.String"
-                               metatype="VariantAttributeDescriptor">
-                        <description>Color of the product.</description>
-                        <modifiers/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
-    
-    
+				<attributes>
+					<attribute qualifier="color" type="localized:java.lang.String"
+						metatype="VariantAttributeDescriptor">
+						<description>Color of the product.</description>
+						<modifiers />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
 
-        <!-- Add your item definitions here -->
 
-	<typegroup name="ChimeLong">
 
-		<itemtype code="HotelProduct" extends="Product"
-			jaloclass="com.chimelong.core.jalo.hotel.HotelProduct">
-			<description>This type represents the seats of a transport vehicle.</description>
-			<attributes>
-			</attributes>
-		</itemtype>
+		<!-- Add your item definitions here -->
 
-		<itemtype code="TicketRatePlan" extends="Category"
-			jaloclass="com.chimelong.core.jalo.hotel.TicketRatePlan">
-			<description>This item represents a pricing plan for a particular ticket that could consist of many
+		<typegroup name="ChimeLong">
+
+			<itemtype code="HotelProduct" extends="Product"
+				jaloclass="com.chimelong.core.jalo.hotel.HotelProduct">
+				<description>This type represents the seats of a transport vehicle.</description>
+				<attributes>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="TicketRatePlan" extends="Category"
+				jaloclass="com.chimelong.core.jalo.hotel.TicketRatePlan">
+				<description>This item represents a pricing plan for a particular ticket that could consist of many
           ticket rates
         </description>
-			<attributes>
-			</attributes>
-		</itemtype>
+				<attributes>
+				</attributes>
+			</itemtype>
 
-		<itemtype code="RoomRatePlan" extends="Category"
-			jaloclass="com.chimelong.core.jalo.hotel.RatePlan">
-			<description>This item represents a pricing plan for a particular hotel that could consist of many
+			<itemtype code="RoomRatePlan" extends="Category"
+				jaloclass="com.chimelong.core.jalo.hotel.RatePlan">
+				<description>This item represents a pricing plan for a particular hotel that could consist of many
           room rates
         </description>
-			<attributes>
-				<attribute type="java.lang.Long" qualifier="timeUnit">
-					<persistence type="property" />
-				</attribute>
-				<attribute type="java.lang.Integer" qualifier="minStay">
-					<persistence type="property" />
-				</attribute>
-				<attribute type="java.lang.Integer" qualifier="maxStay">
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
+				<attributes>
+					<attribute type="java.lang.Long" qualifier="timeUnit">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="minStay">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="maxStay">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
 
-		<itemtype code="TicketRateProduct" extends="Product"
-			jaloclass="com.chimelong.core.jalo.hotel.TicketRateProduct">
-			<description>This type represents a ticket rate that is used in a rate plan.</description>
-			<attributes>
-				<attribute type="DateRangeList" qualifier="dateRanges">
-					<persistence type="property" />
-				</attribute>
-				<attribute type="ChiemLongChannel" qualifier="channel">
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
-		
-		<itemtype code="RoomRateProduct" extends="Product"
-			jaloclass="com.chimelong.core.jalo.hotel.RoomRateProduct">
-			<description>This type represents a room rate that is used in a rate plan.</description>
-			<attributes>
-				<attribute type="DateRangeList" qualifier="dateRanges">
-					<persistence type="property" />
-				</attribute>
-				<attribute type="ChiemLongChannel" qualifier="channel">
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
-		
-		<itemtype code="DateRange" jaloclass="com.chimelong.core.jalo.hotel.DataRange">
-			<description>This item represents a date range from a start to an end date</description>
-			<deployment table="DateRange" typecode="30071" />
-			<attributes>
-				<attribute type="java.util.Date" qualifier="startingDate">
-					<persistence type="property" />
-				</attribute>
-				<attribute type="java.util.Date" qualifier="endingDate">
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
+			<itemtype code="TicketRateProduct" extends="Product"
+				jaloclass="com.chimelong.core.jalo.hotel.TicketRateProduct">
+				<description>This type represents a ticket rate that is used in a rate plan.</description>
+				<attributes>
+					<attribute type="DateRangeList" qualifier="dateRanges">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="ChiemLongChannel" qualifier="channel">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
 
-		<itemtype code="TicketProduct" extends="Product"
-			jaloclass="com.chimelong.core.jalo.ticket.TicketProduct">
-			<description>This type represents the seats of a transport vehicle.</description>
-			<attributes>
-				<attribute qualifier="isPackage" type="boolean">
-					<persistence type="property" />
-					<modifiers optional="false" />
-					<defaultvalue>Boolean.FALSE</defaultvalue>
-				</attribute>
-			</attributes>
-		</itemtype>
+			<itemtype code="RoomRateProduct" extends="Product"
+				jaloclass="com.chimelong.core.jalo.hotel.RoomRateProduct">
+				<description>This type represents a room rate that is used in a rate plan.</description>
+				<attributes>
+					<attribute type="DateRangeList" qualifier="dateRanges">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="ChiemLongChannel" qualifier="channel">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
 
-	</typegroup>
- 
-    </itemtypes>
+			<itemtype code="DateRange" jaloclass="com.chimelong.core.jalo.hotel.DataRange">
+				<description>This item represents a date range from a start to an end date</description>
+				<deployment table="DateRange" typecode="30071" />
+				<attributes>
+					<attribute type="java.util.Date" qualifier="startingDate">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="endingDate">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="TicketProduct" extends="Product"
+				jaloclass="com.chimelong.core.jalo.ticket.TicketProduct">
+				<description>This type represents the seats of a transport vehicle.</description>
+				<attributes>
+					<attribute qualifier="isPackage" type="boolean">
+						<persistence type="property" />
+						<modifiers optional="false" />
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="CategoryMenuComponent" generate="true"
+				extends="SimpleCMSComponent" autocreate="true"
+				jaloclass="com.chimelong.core.jalo.cms2.components.CategoryMenuComponent">
+			</itemtype>
+		</typegroup>
+
+	</itemtypes>
 </items>

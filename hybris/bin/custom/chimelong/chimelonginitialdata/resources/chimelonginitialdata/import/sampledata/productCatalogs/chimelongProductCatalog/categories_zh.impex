@@ -22,4 +22,10 @@ $lang=zh
 
 # Create Categories
 UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
- 
+;sc;;乐园/演出
+;sc100000;;长隆欢乐世界
+;sc100004;;长隆野生动物世界
+;h;;酒店
+;h100002;;长隆酒店
+;h100003;;长隆熊猫酒店
+;h100015;;长隆香江大酒店

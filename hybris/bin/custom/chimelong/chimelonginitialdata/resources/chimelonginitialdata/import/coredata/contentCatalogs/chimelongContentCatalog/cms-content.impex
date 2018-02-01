@@ -8,7 +8,7 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-# Import the CMS content for the Apparel DE site
+# Import the CMS content for the ChimeLong site
 #
 $contentCatalog=chimelongContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
@@ -37,6 +37,7 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 ;;LandingPage6Template;Landing Page 6 Template;layout/landingLayout6Page;CategoryPage,ContentPage
 ;;ContentPage1Template;Content Page 1 Template;layout/contentLayout1Page;ContentPage
 ;;AccountPageTemplate;Account Page Template;account/accountLayoutPage;ContentPage
+;;ChimelongProductListPageTemplate;Chimelong Product List Page Template;category/chimelongProductListPage;ContentPage
 
 # Templates without a frontendTemplateName
 ;;CartPageTemplate;Cart Page Template;;ContentPage;false
@@ -128,6 +129,20 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;NavigationBar;;;navigation
 ;Section1;;;wide
 ;ProductLeftRefinements;;;narrow
+;ProductListSlot;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+
+# Product List Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ChimelongProductListPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Section1;;;wide
 ;ProductListSlot;;;wide
 ;Footer;;;footer
 ;TopHeaderSlot;;;wide
@@ -661,6 +676,19 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;ProductListSlot-ProductListPage;ProductListSlot;;ProductListSlot;true
 ;;PlaceholderContentSlot-ProductListPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
 
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ChimelongProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ChimelongProductListPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-ChimelongProductListPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;MiniCart-ChimelongProductListPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-ChimelongProductListPage;NavigationBar;;NavigationBarSlot;true
+;;Footer-ChimelongProductListPage;Footer;;FooterSlot;true
+;;HeaderLinks-ChimelongProductListPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-ChimelongProductListPage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-ChimelongProductListPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-ChimelongProductListPage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;ProductListSlot-ChimelongProductListPage;ProductListSlot;;ProductListSlot;true
+;;PlaceholderContentSlot-ChimelongProductListPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-CartPage;SiteLogo;;SiteLogoSlot;true
 ;;HomepageLink-CartPage;HomepageNavLink;;HomepageNavLinkSlot;true
@@ -813,6 +841,7 @@ INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTe
 
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
 ;;termsAndConditions;Terms and Conditions Page;ContentPage1Template;/termsAndConditions
+;;chimelongProductListPage; Chimelong Product List Page;ChimelongProductListPageTemplate;false
 
 # Product Details Page
 INSERT_UPDATE ProductPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
@@ -823,3 +852,4 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 ;;productList;Product List;ProductListPageTemplate;false;
 ;;productGrid;Product Grid;ProductGridPageTemplate;true;
 ;;category;Default Category Page;CategoryPageTemplate;false;
+

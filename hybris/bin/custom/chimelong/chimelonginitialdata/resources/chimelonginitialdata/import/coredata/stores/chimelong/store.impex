@@ -9,13 +9,13 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Create the Apparel UK Store
+# Create the ChimeLong Store
 #
 $productCatalog=chimelongProductCatalog
-$currencies=GBP
+$currencies=RMB
 $net=false
 $storeUid=chimelong
-$defaultCurrency=GBP
+$defaultCurrency=RMB
 $languages=en
 $defaultLanguage=en
 $unitedKingdom=GB,GG,IM,JE
@@ -30,6 +30,10 @@ $promoGrp=chimelongPromoGrp
 
 INSERT_UPDATE PromotionGroup;Identifier[unique=true];
 ;$promoGrp;
+
+# Currencies
+INSERT_UPDATE Currency;isocode[unique=true];conversion;digits;symbol
+;RMB;7;2;¥
 
 # Base Store
 INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);submitOrderProcessCode;pickupInStoreMode(code);paymentProvider;expressCheckoutEnabled;maxRadiusForPoSSearch;checkoutFlowGroup;createReturnProcessCode;
