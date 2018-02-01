@@ -36,9 +36,7 @@ public class ChimelongSampleDataImportService extends SampleDataImportService
 	@Override
 	protected void importProductCatalog(final String extensionName, final String productCatalogName)
 	{
-
-		super.importProductCatalog(extensionName, productCatalogName);
-
+		importCheimlongProductCatalog(extensionName, productCatalogName);
 		importBundleProductCatalog(extensionName, productCatalogName);
 	}
 
@@ -118,6 +116,85 @@ public class ChimelongSampleDataImportService extends SampleDataImportService
 		return true;
 	}
 
+	protected void importCheimlongProductCatalog(final String extensionName, final String productCatalogName)
+	{
+		// Load Units
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/classifications-units.impex",
+						extensionName, productCatalogName), false);
+
+		// Load Categories
+		getSetupImpexService().importImpexFile(String.format(
+				"/%s/import/sampledata/productCatalogs/%sProductCatalog/categories.impex", extensionName, productCatalogName), false);
+
+		getSetupImpexService().importImpexFile(
+				String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/categories-classifications.impex",
+						extensionName, productCatalogName),
+				false);
+
+		// Load Suppliers
+		getSetupImpexService().importImpexFile(String.format(
+				"/%s/import/sampledata/productCatalogs/%sProductCatalog/suppliers.impex", extensionName, productCatalogName), false);
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/suppliers-media.impex",
+						extensionName, productCatalogName), false);
+
+		// Load medias for Categories as Suppliers loads some new Categories
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/categories-media.impex",
+						extensionName, productCatalogName), false);
+
+		//rateplan
+		getSetupImpexService().importImpexFile(String.format(
+				"/%s/import/sampledata/productCatalogs/%sProductCatalog/rateplans.impex", extensionName, productCatalogName), false);
+
+		// Load Products
+		getSetupImpexService().importImpexFile(String.format(
+				"/%s/import/sampledata/productCatalogs/%sProductCatalog/products.impex", extensionName, productCatalogName), false);
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/rateproduct.impex",
+						extensionName, productCatalogName), false);
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-media.impex",
+						extensionName, productCatalogName), false);
+		getSetupImpexService().importImpexFile(
+				String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-classifications.impex", extensionName,
+						productCatalogName),
+				false);
+
+		// Load Products Relations
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-relations.impex",
+						extensionName, productCatalogName), false);
+
+		// Load Products Fixes
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-fixup.impex",
+						extensionName, productCatalogName), false);
+
+		// Load Prices
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-prices.impex",
+						extensionName, productCatalogName), false);
+
+		// Load Stock Levels
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-stocklevels.impex",
+						extensionName, productCatalogName), false);
+		getSetupImpexService().importImpexFile(
+				String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-pos-stocklevels.impex", extensionName,
+						productCatalogName),
+				false);
+
+		// Load Taxes
+		getSetupImpexService()
+				.importImpexFile(String.format("/%s/import/sampledata/productCatalogs/%sProductCatalog/products-tax.impex",
+						extensionName, productCatalogName), false);
+
+		// Load Multi-Dimensial Products
+		importMultiDProductCatalog(extensionName, productCatalogName);
+
+	}
 
 	/**
 	 * @return the typeService
