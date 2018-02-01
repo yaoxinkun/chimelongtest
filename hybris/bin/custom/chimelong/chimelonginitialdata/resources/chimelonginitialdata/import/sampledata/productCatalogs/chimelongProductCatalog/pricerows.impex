@@ -1,0 +1,104 @@
+#
+# ImpEx for Importing PriceRows into travel accelerator
+#
+$productCatalog=chimelongProductCatalog
+$productCatalogName=Chimelong Product Catalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+ 
+ 
+INSERT_UPDATE PriceRow ; product(code, $catalogVersion)[unique = true] ; currency(isocode)[unique = true] ; minqtd[default = '1'] ; net[default = true] ; price ; unit(code) ; $catalogVersion ; user(uid) 
+                       ; psc1000041_plan_product1                      ; RMB                              ;                       ;                     ; 198   ; pieces     ;                 ;           
+                       ; psc1000041_plan_product2                      ; RMB                              ;                       ;                     ; 168   ; pieces     ;                 ;           
+                       ; psc1000041_plan_product3                      ; RMB                              ;                       ;                     ; 268   ; pieces     ;                 ;           
+                       ; psc1000041_plan_product4                      ; RMB                              ;                       ;                     ; 238   ; pieces     ;                 ;           
+                       
+                       ; psc1000042_plan_product1                      ; RMB                              ;                       ;                     ; 208   ; pieces     ;                 ;           
+                       ; psc1000042_plan_product2                      ; RMB                              ;                       ;                     ; 178   ; pieces     ;                 ;           
+                       ; psc1000042_plan_product3                      ; RMB                              ;                       ;                     ; 278   ; pieces     ;                 ;           
+                       ; psc1000042_plan_product4                      ; RMB                              ;                       ;                     ; 248   ; pieces     ;                 ;           
+                       
+                       ; psc1000043_plan_product1                      ; RMB                              ;                       ;                     ; 218   ; pieces     ;                 ;           
+                       ; psc1000043_plan_product2                      ; RMB                              ;                       ;                     ; 188   ; pieces     ;                 ;           
+                       ; psc1000043_plan_product3                      ; RMB                              ;                       ;                     ; 288   ; pieces     ;                 ;           
+                       ; psc1000043_plan_product4                      ; RMB                              ;                       ;                     ; 258   ; pieces     ;                 ;           
+                       
+                       ; psc1000045_plan_product1                      ; RMB                              ;                       ;                     ; 228   ; pieces     ;                 ;           
+                       ; psc1000045_plan_product2                      ; RMB                              ;                       ;                     ; 198   ; pieces     ;                 ;           
+                       ; psc1000045_plan_product3                      ; RMB                              ;                       ;                     ; 298   ; pieces     ;                 ;           
+                       ; psc1000045_plan_product4                      ; RMB                              ;                       ;                     ; 268   ; pieces     ;                 ;           
+                       
+                       ; psc1000046_plan_product1                      ; RMB                              ;                       ;                     ; 238   ; pieces     ;                 ;           
+                       ; psc1000046_plan_product2                      ; RMB                              ;                       ;                     ; 208   ; pieces     ;                 ;           
+                       ; psc1000046_plan_product3                      ; RMB                              ;                       ;                     ; 308   ; pieces     ;                 ;           
+                       ; psc1000046_plan_product4                      ; RMB                              ;                       ;                     ; 278   ; pieces     ;                 ;           
+                       
+                       ; psc1000001_plan_product1                      ; RMB                              ;                       ;                     ; 198   ; pieces     ;                 ;           
+                       ; psc1000001_plan_product2                      ; RMB                              ;                       ;                     ; 168   ; pieces     ;                 ;           
+                       ; psc1000001_plan_product3                      ; RMB                              ;                       ;                     ; 268   ; pieces     ;                 ;           
+                       ; psc1000001_plan_product4                      ; RMB                              ;                       ;                     ; 238   ; pieces     ;                 ;           
+                       
+                       ; psc1000002_plan_product1                      ; RMB                              ;                       ;                     ; 208   ; pieces     ;                 ;           
+                       ; psc1000002_plan_product2                      ; RMB                              ;                       ;                     ; 178   ; pieces     ;                 ;           
+                       ; psc1000002_plan_product3                      ; RMB                              ;                       ;                     ; 278   ; pieces     ;                 ;           
+                       ; psc1000002_plan_product4                      ; RMB                              ;                       ;                     ; 248   ; pieces     ;                 ;           
+                       
+                       ; psc1000003_plan_product1                      ; RMB                              ;                       ;                     ; 218   ; pieces     ;                 ;           
+                       ; psc1000003_plan_product2                      ; RMB                              ;                       ;                     ; 188   ; pieces     ;                 ;           
+                       ; psc1000003_plan_product3                      ; RMB                              ;                       ;                     ; 288   ; pieces     ;                 ;           
+                       ; psc1000003_plan_product4                      ; RMB                              ;                       ;                     ; 258   ; pieces     ;                 ;           
+                       
+                       ; psc1000004_plan_product1                      ; RMB                              ;                       ;                     ; 228   ; pieces     ;                 ;           
+                       ; psc1000004_plan_product2                      ; RMB                              ;                       ;                     ; 198   ; pieces     ;                 ;           
+                       ; psc1000004_plan_product3                      ; RMB                              ;                       ;                     ; 298   ; pieces     ;                 ;           
+                       ; psc1000004_plan_product4                      ; RMB                              ;                       ;                     ; 268   ; pieces     ;                 ;           
+                       
+                       ; psc1000005_plan_product1                      ; RMB                              ;                       ;                     ; 238   ; pieces     ;                 ;           
+                       ; psc1000005_plan_product2                      ; RMB                              ;                       ;                     ; 208   ; pieces     ;                 ;           
+                       ; psc1000005_plan_product3                      ; RMB                              ;                       ;                     ; 308   ; pieces     ;                 ;           
+                       ; psc1000005_plan_product4                      ; RMB                              ;                       ;                     ; 278   ; pieces     ;                 ;           
+                       
+                       ; ph1000031_plan_product1                       ; RMB                              ;                       ;                     ; 1199  ; pieces     ;                 ;           
+                       ; ph1000031_plan_product2                       ; RMB                              ;                       ;                     ; 1099  ; pieces     ;                 ;           
+                       ; ph1000031_plan_product3                       ; RMB                              ;                       ;                     ; 1599  ; pieces     ;                 ;           
+                       ; ph1000031_plan_product4                       ; RMB                              ;                       ;                     ; 1499  ; pieces     ;                 ;           
+                       
+                       ; ph1000032_plan_product1                       ; RMB                              ;                       ;                     ; 1399  ; pieces     ;                 ;           
+                       ; ph1000032_plan_product2                       ; RMB                              ;                       ;                     ; 1299  ; pieces     ;                 ;           
+                       ; ph1000032_plan_product3                       ; RMB                              ;                       ;                     ; 1799  ; pieces     ;                 ;           
+                       ; ph1000032_plan_product4                       ; RMB                              ;                       ;                     ; 1899  ; pieces     ;                 ;           
+                       
+                       ; ph1000033_plan_product1                       ; RMB                              ;                       ;                     ; 1799  ; pieces     ;                 ;           
+                       ; ph1000033_plan_product2                       ; RMB                              ;                       ;                     ; 1699  ; pieces     ;                 ;           
+                       ; ph1000033_plan_product3                       ; RMB                              ;                       ;                     ; 2199  ; pieces     ;                 ;           
+                       ; ph1000033_plan_product4                       ; RMB                              ;                       ;                     ; 2099  ; pieces     ;                 ;           
+                       
+                       ; ph1000021_plan_product1                       ; RMB                              ;                       ;                     ; 1199  ; pieces     ;                 ;           
+                       ; ph1000021_plan_product2                       ; RMB                              ;                       ;                     ; 1099  ; pieces     ;                 ;           
+                       ; ph1000021_plan_product3                       ; RMB                              ;                       ;                     ; 1599  ; pieces     ;                 ;           
+                       ; ph1000021_plan_product4                       ; RMB                              ;                       ;                     ; 1499  ; pieces     ;                 ;           
+                       
+                       ; ph1000022_plan_product1                       ; RMB                              ;                       ;                     ; 1399  ; pieces     ;                 ;           
+                       ; ph1000022_plan_product2                       ; RMB                              ;                       ;                     ; 1299  ; pieces     ;                 ;           
+                       ; ph1000022_plan_product3                       ; RMB                              ;                       ;                     ; 1799  ; pieces     ;                 ;           
+                       ; ph1000022_plan_product4                       ; RMB                              ;                       ;                     ; 1699  ; pieces     ;                 ;           
+                       
+                       ; ph1000023_plan_product1                       ; RMB                              ;                       ;                     ; 1799  ; pieces     ;                 ;           
+                       ; ph1000023_plan_product2                       ; RMB                              ;                       ;                     ; 1699  ; pieces     ;                 ;           
+                       ; ph1000023_plan_product3                       ; RMB                              ;                       ;                     ; 2199  ; pieces     ;                 ;           
+                       ; ph1000023_plan_product4                       ; RMB                              ;                       ;                     ; 2099  ; pieces     ;                 ;           
+                       
+                       ; ph1000151_plan_product1                       ; RMB                              ;                       ;                     ; 1199  ; pieces     ;                 ;           
+                       ; ph1000151_plan_product2                       ; RMB                              ;                       ;                     ; 1099  ; pieces     ;                 ;           
+                       ; ph1000151_plan_product3                       ; RMB                              ;                       ;                     ; 1599  ; pieces     ;                 ;           
+                       ; ph1000151_plan_product4                       ; RMB                              ;                       ;                     ; 1499  ; pieces     ;                 ;           
+                       
+                       ; ph1000152_plan_product1                       ; RMB                              ;                       ;                     ; 1399  ; pieces     ;                 ;           
+                       ; ph1000152_plan_product2                       ; RMB                              ;                       ;                     ; 1299  ; pieces     ;                 ;           
+                       ; ph1000152_plan_product3                       ; RMB                              ;                       ;                     ; 1799  ; pieces     ;                 ;           
+                       ; ph1000152_plan_product4                       ; RMB                              ;                       ;                     ; 1699  ; pieces     ;                 ;           
+                       
+                       ; ph1000153_plan_product1                       ; RMB                              ;                       ;                     ; 1799  ; pieces     ;                 ;           
+                       ; ph1000153_plan_product2                       ; RMB                              ;                       ;                     ; 1699  ; pieces     ;                 ;           
+                       ; ph1000153_plan_product3                       ; RMB                              ;                       ;                     ; 2199  ; pieces     ;                 ;           
+                       ; ph1000153_plan_product4                       ; RMB                              ;                       ;                     ; 2099  ; pieces     ;                 ;           

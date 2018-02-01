@@ -1,0 +1,31 @@
+#
+# ImpEx for Importing RatePlan into travel accelerator
+#
+$productCatalog=chimelongProductCatalog
+$productCatalogName=Chimelong Product Catalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+ 
+INSERT_UPDATE TicketRatePlan ; code[unique=true] ; $catalogVersion ;  
+                             ; psc1000041_plan   ;                 ;  
+                             ; psc1000042_plan   ;                 ;  
+                             ; psc1000043_plan   ;                 ;  
+                             ; psc1000045_plan   ;                 ;  
+                             ; psc1000046_plan   ;                 ;  
+                             ; psc1000001_plan   ;                 ;  
+                             ; psc1000002_plan   ;                 ;  
+                             ; psc1000003_plan   ;                 ;  
+                             ; psc1000004_plan   ;                 ;  
+                             ; psc1000005_plan   ;                 ;  
+                             
+                             
+INSERT_UPDATE RoomRatePlan ; code[unique=true] ; timeUnit ; minStay ; maxStay ; $catalogVersion ;  
+                           ; ph1000031_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000032_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000033_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000021_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000022_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000023_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000151_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000152_plan    ;          ;         ;         ;                 ;  
+                           ; ph1000153_plan    ;          ;         ;         ;                 ;  

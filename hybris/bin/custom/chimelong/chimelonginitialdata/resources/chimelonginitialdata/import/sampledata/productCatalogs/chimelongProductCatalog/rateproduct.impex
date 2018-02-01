@@ -1,0 +1,116 @@
+# ImpEx for Importing RoomRate into travel accelerator
+#
+$productCatalog=chimelongProductCatalog
+$productCatalogName=Chimelong Product Catalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]$approved = approvalstatus(code)[default = 'approved']
+$categories = supercategories(code, $catalogVersion)
+ 
+$approved=approvalstatus(code)[default='check']
+ 
+#################
+### DateRange ###
+#################
+ 
+INSERT_UPDATE DateRange ; startingDate[dateformat = 'yyyy-MM-dd'][unique=true] ; endingDate[dateformat = 'yyyy-MM-dd'][unique=true] ; &dateRangeRef 
+#2018                   
+                        ; 2018-01-01                                           ; 2018-09-30                                         ; dateRange1    
+                        ; 2018-10-01                                           ; 2018-10-07                                         ; dateRange2    
+                        ; 2018-10-08                                           ; 2018-12-31                                         ; dateRange3    
+                        
+INSERT_UPDATE TicketRateProduct ; code[unique=true]        ; dateRanges(&dateRangeRef) ; chiemLongChannel(code) ; $categories     ; $catalogVersion ; $approved 
+                                ; psc1000041_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000041_plan ;                 ;           
+                                ; psc1000041_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000041_plan ;                 ;           
+                                ; psc1000041_plan_product3 ; dateRange2                ; SITE                   ; psc1000041_plan ;                 ;           
+                                ; psc1000041_plan_product4 ; dateRange2                ; OTA                    ; psc1000041_plan ;                 ;           
+                                
+                                ; psc1000042_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000042_plan ;                 ;           
+                                ; psc1000042_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000042_plan ;                 ;           
+                                ; psc1000042_plan_product3 ; dateRange2                ; SITE                   ; psc1000042_plan ;                 ;           
+                                ; psc1000042_plan_product4 ; dateRange2                ; OTA                    ; psc1000042_plan ;                 ;           
+                                
+                                ; psc1000043_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000043_plan ;                 ;           
+                                ; psc1000043_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000043_plan ;                 ;           
+                                ; psc1000043_plan_product3 ; dateRange2                ; SITE                   ; psc1000043_plan ;                 ;           
+                                ; psc1000043_plan_product4 ; dateRange2                ; OTA                    ; psc1000043_plan ;                 ;           
+                                
+                                ; psc1000045_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000045_plan ;                 ;           
+                                ; psc1000045_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000045_plan ;                 ;           
+                                ; psc1000045_plan_product3 ; dateRange2                ; SITE                   ; psc1000045_plan ;                 ;           
+                                ; psc1000045_plan_product4 ; dateRange2                ; OTA                    ; psc1000045_plan ;                 ;           
+                                
+                                ; psc1000046_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000046_plan ;                 ;           
+                                ; psc1000046_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000046_plan ;                 ;           
+                                ; psc1000046_plan_product3 ; dateRange2                ; SITE                   ; psc1000046_plan ;                 ;           
+                                ; psc1000046_plan_product4 ; dateRange2                ; OTA                    ; psc1000046_plan ;                 ;           
+                                
+                                ; psc1000001_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000001_plan ;                 ;           
+                                ; psc1000001_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000001_plan ;                 ;           
+                                ; psc1000001_plan_product3 ; dateRange2                ; SITE                   ; psc1000001_plan ;                 ;           
+                                ; psc1000001_plan_product4 ; dateRange2                ; OTA                    ; psc1000001_plan ;                 ;           
+                                
+                                ; psc1000002_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000002_plan ;                 ;           
+                                ; psc1000002_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000002_plan ;                 ;           
+                                ; psc1000002_plan_product3 ; dateRange2                ; SITE                   ; psc1000002_plan ;                 ;           
+                                ; psc1000002_plan_product4 ; dateRange2                ; OTA                    ; psc1000002_plan ;                 ;           
+                                
+                                ; psc1000003_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000003_plan ;                 ;           
+                                ; psc1000003_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000003_plan ;                 ;           
+                                ; psc1000003_plan_product3 ; dateRange2                ; SITE                   ; psc1000003_plan ;                 ;           
+                                ; psc1000003_plan_product4 ; dateRange2                ; OTA                    ; psc1000003_plan ;                 ;           
+                                
+                                ; psc1000004_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000004_plan ;                 ;           
+                                ; psc1000004_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000004_plan ;                 ;           
+                                ; psc1000004_plan_product3 ; dateRange2                ; SITE                   ; psc1000004_plan ;                 ;           
+                                ; psc1000004_plan_product4 ; dateRange2                ; OTA                    ; psc1000004_plan ;                 ;           
+                                
+                                ; psc1000005_plan_product1 ; dateRange,dateRange3      ; SITE                   ; psc1000005_plan ;                 ;           
+                                ; psc1000005_plan_product2 ; dateRange,dateRange3      ; OTA                    ; psc1000005_plan ;                 ;           
+                                ; psc1000005_plan_product3 ; dateRange2                ; SITE                   ; psc1000005_plan ;                 ;           
+                                ; psc1000005_plan_product4 ; dateRange2                ; OTA                    ; psc1000005_plan ;                 ;           
+                                
+INSERT_UPDATE RoomRateProduct ; code[unique=true]       ; dateRanges(&dateRangeRef) ; chiemLongChannel(code) ; $categories    ; $catalogVersion ; $approved 
+                              ; ph1000031_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000031_plan ;                 ;           
+                              ; ph1000031_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000031_plan ;                 ;           
+                              ; ph1000031_plan_product3 ; dateRange2                ; SITE                   ; ph1000031_plan ;                 ;           
+                              ; ph1000031_plan_product4 ; dateRange2                ; OTA                    ; ph1000031_plan ;                 ;           
+                              
+                              ; ph1000032_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000032_plan ;                 ;           
+                              ; ph1000032_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000032_plan ;                 ;           
+                              ; ph1000032_plan_product3 ; dateRange2                ; SITE                   ; ph1000032_plan ;                 ;           
+                              ; ph1000032_plan_product4 ; dateRange2                ; OTA                    ; ph1000032_plan ;                 ;           
+                              
+                              ; ph1000033_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000033_plan ;                 ;           
+                              ; ph1000033_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000033_plan ;                 ;           
+                              ; ph1000033_plan_product3 ; dateRange2                ; SITE                   ; ph1000033_plan ;                 ;           
+                              ; ph1000033_plan_product4 ; dateRange2                ; OTA                    ; ph1000033_plan ;                 ;           
+                              
+                              ; ph1000021_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000021_plan ;                 ;           
+                              ; ph1000021_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000021_plan ;                 ;           
+                              ; ph1000021_plan_product3 ; dateRange2                ; SITE                   ; ph1000021_plan ;                 ;           
+                              ; ph1000021_plan_product4 ; dateRange2                ; OTA                    ; ph1000021_plan ;                 ;           
+                              
+                              ; ph1000022_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000022_plan ;                 ;           
+                              ; ph1000022_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000022_plan ;                 ;           
+                              ; ph1000022_plan_product3 ; dateRange2                ; SITE                   ; ph1000022_plan ;                 ;           
+                              ; ph1000022_plan_product4 ; dateRange2                ; OTA                    ; ph1000022_plan ;                 ;           
+                              
+                              ; ph1000023_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000023_plan ;                 ;           
+                              ; ph1000023_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000023_plan ;                 ;           
+                              ; ph1000023_plan_product3 ; dateRange2                ; SITE                   ; ph1000023_plan ;                 ;           
+                              ; ph1000023_plan_product4 ; dateRange2                ; OTA                    ; ph1000023_plan ;                 ;           
+                              
+                              ; ph1000151_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000151_plan ;                 ;           
+                              ; ph1000151_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000151_plan ;                 ;           
+                              ; ph1000151_plan_product3 ; dateRange2                ; SITE                   ; ph1000151_plan ;                 ;           
+                              ; ph1000151_plan_product4 ; dateRange2                ; OTA                    ; ph1000151_plan ;                 ;           
+                              
+                              ; ph1000152_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000152_plan ;                 ;           
+                              ; ph1000152_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000152_plan ;                 ;           
+                              ; ph1000152_plan_product3 ; dateRange2                ; SITE                   ; ph1000152_plan ;                 ;           
+                              ; ph1000152_plan_product4 ; dateRange2                ; OTA                    ; ph1000152_plan ;                 ;           
+                              
+                              ; ph1000153_plan_product1 ; dateRange,dateRange3      ; SITE                   ; ph1000153_plan ;                 ;           
+                              ; ph1000153_plan_product2 ; dateRange,dateRange3      ; OTA                    ; ph1000153_plan ;                 ;           
+                              ; ph1000153_plan_product3 ; dateRange2                ; SITE                   ; ph1000153_plan ;                 ;           
+                              ; ph1000153_plan_product4 ; dateRange2                ; OTA                    ; ph1000153_plan ;                 ;           
