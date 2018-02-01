@@ -196,8 +196,8 @@ INSERT_UPDATE RotatingImagesComponent;$contentCV[unique=true];uid[unique=true];n
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;&componentRef
 
 #Category Menu Component
-INSERT_UPDATE CategoryMenuComponent;$contentCV[unique=true];uid[unique=true];name;productCatalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog])[unique=true],CatalogVersion.version[default=Staged])[default=$productCatalog:Staged];&componentRef;
-;;ChimelongCategoryMenuComponent;Chimelong Category Menu Component;;ChimelongCategoryMenuComponent;
+INSERT_UPDATE CategoryMenuComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;
+;;ChimelongCategoryMenuComponent;Chimelong Category Menu Component;ChimelongCategoryMenuComponent;
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
 ;;Section3Slot-HomePage;Section3 Slot for Home Page;true;ChimelongCategoryMenuComponent
