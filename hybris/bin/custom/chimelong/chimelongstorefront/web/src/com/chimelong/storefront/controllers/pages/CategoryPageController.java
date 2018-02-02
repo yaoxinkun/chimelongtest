@@ -41,6 +41,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -85,10 +86,11 @@ public class CategoryPageController extends AbstractCategoryPageController
 	private static String DATE_PATTERN = "yyyy-MM-dd";
 	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	private static final Logger LOG = Logger.getLogger(CategoryPageController.class);
+	protected static final String CATEGORY_PARENT_CODE_PATH_VARIABLE_PATTERN = "/{parentCategoryCode}/{categoryCode}";
 
-	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String category(@PathVariable("categoryCode") final String categoryCode, // NOSONAR
-			@RequestParam(value = "date", required = false) String date,
+	@RequestMapping(value = CATEGORY_PARENT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	public String category(@PathVariable("parentCategoryCode") final String parentCategoryCode,
+			@PathVariable("categoryCode") final String categoryCode, @RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "edate", required = false) String edate,
 			@RequestParam(value = "channel", required = false) String channel,
 			@RequestParam(value = "net", required = false) Boolean net,
@@ -100,13 +102,6 @@ public class CategoryPageController extends AbstractCategoryPageController
 			throws UnsupportedEncodingException, CMSItemNotFoundException
 	{
 		final CategoryModel category = getCommerceCategoryService().getCategoryForCode(categoryCode);
-
-		final String redirection = checkRequestUrl(request, response, getCategoryModelUrlResolver().resolve(category));
-		if (StringUtils.isNotEmpty(redirection))
-		{
-			return redirection;
-		}
-
 		Date dateD = null;
 		Date edateD = null;
 		ChiemLongChannel cLongChannel = null;
@@ -118,13 +113,8 @@ public class CategoryPageController extends AbstractCategoryPageController
 		{
 			cLongChannel = ChiemLongChannel.valueOf(channel);
 		}
-		if (null == net)
-		{
-			net = true;
-		}
 
-
-		if ("sc".equals(categoryCode))
+		if ("sc".equals(parentCategoryCode))
 		{
 			try
 			{
@@ -145,7 +135,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 			}
 
 			List<ProductData> productDatas = new ArrayList<>();
-			List<ProductModel> products = productService.getProductsForCategory(category);
+			List<ProductModel> products = category.getProducts();
 			for (ProductModel product : products)
 			{
 				if (product instanceof TicketProductModel)
@@ -155,15 +145,20 @@ public class CategoryPageController extends AbstractCategoryPageController
 					productDatas.add(productData);
 				}
 			}
-
+			model.addAttribute("parentCategoryCode", parentCategoryCode);
 			model.addAttribute("date", date);
 			model.addAttribute("productDatas", productDatas);
-			storeCmsPageInModel(model, getContentPageForLabelOrId("cheimlongProductListPage"));
-			setUpMetaDataForContentPage(model, getContentPageForLabelOrId("cheimlongProductListPage"));
+			model.addAttribute("searchUrl", "/chimelongstorefront/c/" + parentCategoryCode + "/" + categoryCode);
+			storeCmsPageInModel(model, getContentPageForLabelOrId("chimelongProductListPage"));
+			setUpMetaDataForContentPage(model, getContentPageForLabelOrId("chimelongProductListPage"));
 			return getViewForPage(model);
 		}
-		else if ("h".equals(categoryCode))
+		else if ("h".equals(parentCategoryCode))
 		{
+			if (null == net)
+			{
+				net = true;
+			}
 			try
 			{
 				if (StringUtils.isNotBlank(date))
@@ -177,7 +172,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 				}
 				if (StringUtils.isNotBlank(edate))
 				{
-					dateD = convertStringDateToDate(edate, DATE_PATTERN);
+					edateD = convertStringDateToDate(edate, DATE_PATTERN);
 				}
 				else
 				{
@@ -212,12 +207,18 @@ public class CategoryPageController extends AbstractCategoryPageController
 			{
 				model.addAttribute("noresult", true);
 			}
+			model.addAttribute("parentCategoryCode", parentCategoryCode);
+			model.addAttribute("date", date);
 			model.addAttribute("edate", edate);
-			storeCmsPageInModel(model, getContentPageForLabelOrId("cheimlongProductListPage"));
-			setUpMetaDataForContentPage(model, getContentPageForLabelOrId("cheimlongProductListPage"));
+			model.addAttribute("productDatas", productDatas);
+			model.addAttribute("net", net);
+			model.addAttribute("searchUrl", "/chimelongstorefront/c/" + parentCategoryCode + "/" + categoryCode);
+			storeCmsPageInModel(model, getContentPageForLabelOrId("chimelongProductListPage"));
+			setUpMetaDataForContentPage(model, getContentPageForLabelOrId("chimelongProductListPage"));
 			return getViewForPage(model);
 		}
-		return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
+		prepareNotFoundPage(model, response);
+		return getViewForPage(model);
 	}
 
 	@ResponseBody
@@ -246,7 +247,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 	{
 		ProductData productData = new ProductData();
 		productData.setCode(product.getCode());
-		productData.setName(product.getName());
+		productData.setName(product.getName(Locale.CHINESE));
 		TicketRatePlanModel ticketRatePlan = product.getTicketRatePlan();
 		if (null != ticketRatePlan)
 		{
@@ -259,7 +260,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 					if (validateRateAgainstDate(dateD, ticketRateProductModel)
 							&& cLongChannel.equals(ticketRateProductModel.getChannel()))
 					{
-						PriceDataType priceType = PriceDataType.FROM;
+						PriceDataType priceType = PriceDataType.BUY;
 						final PriceInformation info = commercePriceService.getWebPriceForProduct(ticketRateProductModel);
 						final PriceData priceData = priceDataFactory.create(priceType,
 								BigDecimal.valueOf(info.getPriceValue().getValue()), info.getPriceValue().getCurrencyIso());
@@ -282,7 +283,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 	{
 		ProductData productData = new ProductData();
 		productData.setCode(product.getCode());
-		productData.setName(product.getName());
+		productData.setName(product.getName(Locale.CHINESE));
 		RoomRatePlanModel roomRatePlan = product.getRoomRatePlan();
 		if (null != roomRatePlan)
 		{
@@ -290,7 +291,8 @@ public class CategoryPageController extends AbstractCategoryPageController
 
 			if (net)
 			{
-				PriceData priceData = calHotelNetPrice(productModels, dateD, 1, cLongChannel);
+				long stayDays = getStayDays(edateD, dateD);
+				PriceData priceData = calHotelNetPrice(productModels, dateD, stayDays, cLongChannel);
 				if (null == priceData)
 				{
 					LOG.info("NO ROOMRATEPLANMODEL FOUND FOR CURRENT PRODUCT!");
@@ -312,13 +314,13 @@ public class CategoryPageController extends AbstractCategoryPageController
 				{
 					BundleTemplateData bundleTemplateData = new BundleTemplateData();
 					List<ProductData> products = new ArrayList<>();
-					bundleTemplateData.setName(bundleTemplateModel.getName());
+					bundleTemplateData.setName(bundleTemplateModel.getName(Locale.CHINESE));
 					bundleTemplateData.setId(bundleTemplateModel.getId());
 					for (ProductModel productModelBT : bundleTemplateModel.getProducts())
 					{
 						ProductData productDataBT = new ProductData();
 						productDataBT.setCode(productModelBT.getCode());
-						productDataBT.setName(productModelBT.getName());
+						productDataBT.setName(productModelBT.getName(Locale.CHINESE));
 						products.add(productData);
 					}
 					Collection<ChangeProductPriceBundleRuleModel> bundleRuleModels = bundleTemplateModel
@@ -393,10 +395,10 @@ public class CategoryPageController extends AbstractCategoryPageController
 		return null;
 	}
 
-	private PriceData calHotelNetPrice(List<ProductModel> productModels, Date dateD, int stayDays, ChiemLongChannel cLongChannel)
+	private PriceData calHotelNetPrice(List<ProductModel> productModels, Date dateD, long stayDays, ChiemLongChannel cLongChannel)
 	{
 		double totalNetPrice = 0;
-		PriceDataType priceType = PriceDataType.FROM;
+		PriceDataType priceType = PriceDataType.BUY;
 		String currencyIso = null;
 		for (int i = 0; i < stayDays; i++)
 		{
@@ -421,8 +423,24 @@ public class CategoryPageController extends AbstractCategoryPageController
 				LOG.error("CAN NOT FIND PLAN FOR THIS DATE!");
 				return null;
 			}
+			dateD = plusOneDay(dateD);
 		}
 		final PriceData priceData = priceDataFactory.create(priceType, BigDecimal.valueOf(totalNetPrice), currencyIso);
 		return priceData;
+	}
+
+	private Date plusOneDay(Date date)
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DAY_OF_MONTH, 1);
+		Date tomorrow = c.getTime();
+		return tomorrow;
+	}
+
+	private long getStayDays(Date edate, Date date)
+	{
+		long day = (edate.getTime() - date.getTime()) / (24 * 60 * 60 * 1000);
+		return day;
 	}
 }

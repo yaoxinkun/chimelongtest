@@ -14,7 +14,9 @@ import de.hybris.platform.category.model.CategoryModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
 import de.hybris.platform.commercefacades.product.data.CategoryData;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -28,6 +30,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chimelong.core.model.cms2.components.CategoryMenuComponentModel;
+import com.chimelong.core.model.hotel.RoomRatePlanModel;
+import com.chimelong.core.model.hotel.TicketRatePlanModel;
 import com.chimelong.storefront.controllers.ControllerConstants;
 
 
@@ -36,27 +40,35 @@ import com.chimelong.storefront.controllers.ControllerConstants;
  */
 @Controller("CategoryMenuComponentController")
 @RequestMapping(value = ControllerConstants.Actions.Cms.CategoryMenuComponent)
-public class CategoryMenuComponentController
-		extends AbstractAcceleratorCMSComponentController<CategoryMenuComponentModel>
+public class CategoryMenuComponentController extends AbstractAcceleratorCMSComponentController<CategoryMenuComponentModel>
 {
 
 	@Resource
 	private CMSSiteService cmsSiteService;
 
 	@Override
-	protected void fillModel(final HttpServletRequest request, final Model model,
-			final CategoryMenuComponentModel component)
+	protected void fillModel(final HttpServletRequest request, final Model model, final CategoryMenuComponentModel component)
 	{
 		final Collection<CategoryModel> rootCatories = cmsSiteService.getCurrentSite().getProductCatalogs().iterator().next()
 				.getRootCategories();
 		final List<CategoryData> categoryDatas = new LinkedList<>();
 		if (CollectionUtils.isNotEmpty(rootCatories))
 		{
-			rootCatories.forEach(rootCategory -> {
-				addCategory(categoryDatas, rootCategory, null);
-				final Collection<CategoryModel> subCategories = rootCategory.getAllSubcategories();
-				subCategories.forEach(subCategory -> addCategory(categoryDatas, subCategory, rootCategory));
-			});
+			Iterator<CategoryModel> iterator = rootCatories.iterator();
+			while (iterator.hasNext())
+			{
+				CategoryModel categoryModel = iterator.next();
+				if (categoryModel instanceof TicketRatePlanModel || categoryModel instanceof RoomRatePlanModel)
+					iterator.remove(); //注意这个地方
+			}
+			if (CollectionUtils.isNotEmpty(rootCatories))
+			{
+				rootCatories.forEach(rootCategory -> {
+					addCategory(categoryDatas, rootCategory, null);
+					final Collection<CategoryModel> subCategories = rootCategory.getAllSubcategories();
+					subCategories.forEach(subCategory -> addCategory(categoryDatas, subCategory, rootCategory));
+				});
+			}
 		}
 		model.addAttribute("categoryMenuDatas", categoryDatas);
 	}
@@ -68,6 +80,8 @@ public class CategoryMenuComponentController
 		categoryData.setCode(categoryModel.getCode());
 		categoryData.setName(categoryModel.getName(Locale.CHINESE));
 		categoryData.setParentCategoryName(parentCategory == null ? null : parentCategory.getName(Locale.CHINESE));
+		categoryData.setUrl(
+				parentCategory == null ? "c/" + categoryModel.getCode() : "c/"+parentCategory.getCode() + "/" + categoryModel.getCode());
 		categoryDatas.add(categoryData);
 	}
 }
