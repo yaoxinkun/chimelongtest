@@ -76,6 +76,26 @@ def config = {
         extName 'chimelongcore'
 	    extName 'chimelongstorefront'
 
+	    extName 'chineseprofileaddon'
+        extName 'chineselogisticaddon'
+        extName 'chineselogisticbackoffice'
+
+        extName 'chinesepaymentaddon'
+        extName 'chinesetaxinvoiceaddon'
+        extName 'chinesetaxinvoicebackoffice'
+        extName 'chinesepspalipaymock'
+        extName 'chinesepspalipaysamplesaddon'
+        extName 'chinesepspalipaysbackoffice'
+        extName 'chinesestoreaddon'
+        extName 'verticalnavigationaddon'
+
+        extName 'chineseaddressaddon'
+        extName 'chineseaddressbackoffice'
+
+        extName 'chinesepspwechatpaymentaddon'
+        extName 'chinesepspwechatpaysamplesaddon'
+        extName 'chinesepspwechatpaysbackoffice'
+
 	}
 }
 

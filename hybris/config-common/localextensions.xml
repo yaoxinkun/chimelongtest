@@ -64,5 +64,23 @@
     <extension name='chimelongcore' />
     <extension name='chimelongstorefront' />
 
+
+    <extension name='chineseprofileaddon' />
+    <extension name='chineselogisticaddon' />
+    <extension name='chineselogisticbackoffice' />
+    <extension name='chinesepaymentaddon' />
+    <extension name='chinesetaxinvoiceaddon' />
+    <extension name='chinesetaxinvoicebackoffice' />
+    <extension name='chinesepspalipaymock' />
+    <extension name='chinesepspalipaysamplesaddon' />
+    <extension name='chinesepspalipaysbackoffice' />
+    <extension name='chinesestoreaddon' />
+    <extension name='verticalnavigationaddon' />
+    <extension name='chineseaddressaddon' />
+    <extension name='chineseaddressbackoffice' />
+    <extension name='chinesepspwechatpaymentaddon' />
+    <extension name='chinesepspwechatpaysamplesaddon' />
+    <extension name='chinesepspwechatpaysbackoffice' />
+
   </extensions>
 </hybrisconfig>
