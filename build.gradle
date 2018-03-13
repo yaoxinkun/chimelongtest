@@ -18,10 +18,11 @@ def config = {
 	    extName 'solrfacetsearchbackoffice'
 	    extName 'solrserver'
 	    extName 'ycommercewebservices'
-
+        extName 'b2bcommercebackoffice'
+        extName 'b2badmincockpit'
 	    extName 'acceleratorwebservicesaddon'
 	    extName 'orderselfserviceaddon'
-
+        extName 'b2bacceleratoraddon'
 	    extName 'customersupportbackoffice'
 	    extName 'customerticketingaddon'
 	    extName 'commerceorgsamplesaddon'
@@ -76,26 +77,6 @@ def config = {
         extName 'chimelongcore'
 	    extName 'chimelongstorefront'
 
-	    extName 'chineseprofileaddon'
-        extName 'chineselogisticaddon'
-        extName 'chineselogisticbackoffice'
-
-        extName 'chinesepaymentaddon'
-        extName 'chinesetaxinvoiceaddon'
-        extName 'chinesetaxinvoicebackoffice'
-        extName 'chinesepspalipaymock'
-        extName 'chinesepspalipaysamplesaddon'
-        extName 'chinesepspalipaysbackoffice'
-        extName 'chinesestoreaddon'
-        extName 'verticalnavigationaddon'
-
-        extName 'chineseaddressaddon'
-        extName 'chineseaddressbackoffice'
-
-        extName 'chinesepspwechatpaymentaddon'
-        extName 'chinesepspwechatpaysamplesaddon'
-        extName 'chinesepspwechatpaysbackoffice'
-
 	}
 }
 
@@ -106,7 +87,7 @@ task setup << {
 	pl.setup()
 
 	pl.project.addons {
-		names "commerceorgsamplesaddon,promotionenginesamplesaddon,smarteditaddon,textfieldconfiguratortemplateaddon,assistedservicestorefront,assistedservicepromotionaddon,customerticketingaddon,orderselfserviceaddon,adaptivesearchsamplesaddon,multicountrysampledataaddon,pcmbackofficesamplesaddon,personalizationsearchsamplesaddon"
+		names "b2bacceleratoraddon,commerceorgsamplesaddon,promotionenginesamplesaddon,smarteditaddon,textfieldconfiguratortemplateaddon,assistedservicestorefront,assistedservicepromotionaddon,customerticketingaddon,orderselfserviceaddon,adaptivesearchsamplesaddon,multicountrysampledataaddon,pcmbackofficesamplesaddon,personalizationsearchsamplesaddon"
 		template "yacceleratorstorefront"
 		storeFronts "chimelongstorefront"
 		platform pl
